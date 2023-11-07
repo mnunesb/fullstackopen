@@ -5,26 +5,33 @@ const Header = ({course}) =>{
     </div>
   );
 }
-
-const Part = ({parts, i}) => {
+const Part = ({name, exercises}) => {
   return(
     <div>
       <p>
-        {parts[i].name}: {parts[i].exercises}
+        {name}: {exercises}
       </p>
     </div>
   );
 }
-
-const Content =({parts}) => {
+const Content =(props) => {
   return(
     <div>
-      <Part parts={parts} i='0'/>
-      <Part parts={parts} i='1'/>
-      <Part parts={parts} i='2'/>
+      <Part name={props.part1name} exercises={props.part1exercises}/>
+      <Part name={props.part2name} exercises={props.part2exercises}/>
+      <Part name={props.part3name} exercises={props.part3exercises}/>
     </div>
   );
 }
+/* const Content =({parts}) => {
+  return(
+    <div>
+      <Part name={parts[0].name} exercises={parts[0].exercises}/>
+      <Part name={parts[1].name} exercises={parts[1].exercises}/>
+      <Part name={parts[2].name} exercises={parts[2].exercises}/>
+    </div>
+  );
+} */
 
 const All = ({exercises}) =>{
   return(
@@ -32,39 +39,31 @@ const All = ({exercises}) =>{
       <p>Number of exercises: {exercises}</p>
     </div>
   );
-}
+} 
 
 
 const App = () => {
+
   const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const part1 = {
+    name: 'Fundamentals of React',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Using props to pass data',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'State of a component',
+    exercises: 14
+  }
 
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ];
-
-  const totalExercises = parts.reduce((acumulator,part) => acumulator = acumulator + part.exercises, 0 );
+  const totalExercises = part1.exercises + part2.exercises + part3.exercises;
 
   return (
     <div>
       <Header course={course}/>
-      <Content parts= {parts} />
+      <Content part1name={part1.name} part1exercises={part1.exercises} part2name={part2.name} part2exercises={part2.exercises} part3name={part3.name} part3exercises={part3.exercises}/>
       <All exercises={totalExercises} />
     </div>
   )
