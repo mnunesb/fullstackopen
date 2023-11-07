@@ -25,10 +25,11 @@ const Content =({parts}) => {
   );
 }
 
-const All = ({exercises}) =>{
+const All = ({parts}) =>{
+  const totalExercises = parts[0].exercises + parts[1].exercises + parts[2].exercises;
   return(
     <div>
-      <p>Number of exercises: {exercises}</p>
+      <p>Number of exercises: {totalExercises}</p>
     </div>
   );
 } 
@@ -52,13 +53,12 @@ const App = () => {
     }
   ]
 
-  const totalExercises = parts[0].exercises + parts[1].exercises + parts[2].exercises;
 
   return (
     <div>
       <Header course={course}/>
       <Content parts={parts}/>
-      <All exercises={totalExercises} />
+      <All parts={parts} />
     </div>
   )
 }
