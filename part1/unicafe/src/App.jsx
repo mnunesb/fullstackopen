@@ -5,17 +5,30 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [total, setTotal] =useState(0)
 
 const updateGood = () =>{
-  setGood(good +1);
+  const newGood = good + 1;
+  setGood(newGood);
+  const newTotal = total + 1;
+  setTotal(newTotal);
+
 }
 
 const updateNeutral = () =>{
-  setNeutral(neutral +1);
+  const newNeutral = neutral + 1;
+  setNeutral(newNeutral);
+  const newTotal = total + 1;
+  setTotal(newTotal);
+
 }
 
 const updateBad = () =>{
-  setBad(bad +1);
+  const newBad = bad +1;
+  setBad(newBad);
+  const newTotal = total + 1;
+  setTotal(newTotal);
+
 }
 
 const Button = (props)=>{
@@ -24,16 +37,51 @@ const Button = (props)=>{
   );
 }
 
+const Average = () =>{
+  if(total == 0){
+    return(
+      <div> Average = 0</div>
+    );
+  } else{
+  return(
+    <div>
+      Average = {(good - bad)/total}
+    </div>
+  );
+ }
+}
+
+const Positive = ()=>{
+  if(total == 0){
+    return(
+      <div> Positive = 0</div>
+    );
+  } else{
+    return(
+      <div>
+        Positive: {(good/total)*100}%
+      </div>
+  );
+}
+}
+
   return (  
     <div>
-      <h1>Give Feedback</h1>
-      <Button onSmash={updateGood} text='Good'/>
-      <Button onSmash={updateNeutral} text='Neutral'/>
-      <Button onSmash={updateBad} text='Bad'/>
-      <h1>Statistics</h1>
-      <div>Good = {good}</div>
-      <div>Neutral = {neutral}</div>
-      <div>Bad = {bad}</div>
+      <div>
+        <h1>Give Feedback</h1>
+        <Button onSmash={updateGood} text='Good'/>
+        <Button onSmash={updateNeutral} text='Neutral'/>
+        <Button onSmash={updateBad} text='Bad'/>
+      </div>
+      <div>
+        <h1>Statistics</h1>
+        <div>Good = {good}</div>
+        <div>Neutral = {neutral}</div>
+        <div>Bad = {bad}</div>
+        <div>Total = {total}</div>
+        <Average></Average>
+        <Positive></Positive>
+      </div>
     </div>
   )
 }
