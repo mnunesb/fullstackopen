@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Header = ({course}) =>{
   return(
     <div>
@@ -54,6 +56,11 @@ const App = () => {
       }
     ]
   }
+
+
+  const [left,setLeft]= useState(0);
+  const [right,setRight]= useState(0);
+  const [total,setTotal]= useState(0);
 
 
   return (
