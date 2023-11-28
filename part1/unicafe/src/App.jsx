@@ -65,6 +65,20 @@ const Positive = ()=>{
 }
 }
 
+ const Statistics = ()=>{
+  return(
+    <div>
+      <h1>Statistics</h1>
+      <div>Good = {good}</div>
+      <div>Neutral = {neutral}</div>
+      <div>Bad = {bad}</div>
+      <div>Total = {total}</div>
+      <Average></Average>
+      <Positive></Positive>
+    </div>
+
+  );
+ }
   return (  
     <div>
       <div>
@@ -72,15 +86,7 @@ const Positive = ()=>{
         <Button onSmash={updateGood} text='Good'/>
         <Button onSmash={updateNeutral} text='Neutral'/>
         <Button onSmash={updateBad} text='Bad'/>
-      </div>
-      <div>
-        <h1>Statistics</h1>
-        <div>Good = {good}</div>
-        <div>Neutral = {neutral}</div>
-        <div>Bad = {bad}</div>
-        <div>Total = {total}</div>
-        <Average></Average>
-        <Positive></Positive>
+        <Statistics></Statistics>
       </div>
     </div>
   )
