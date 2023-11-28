@@ -12,7 +12,6 @@ const updateGood = () =>{
   setGood(newGood);
   const newTotal = total + 1;
   setTotal(newTotal);
-
 }
 
 const updateNeutral = () =>{
@@ -20,7 +19,6 @@ const updateNeutral = () =>{
   setNeutral(newNeutral);
   const newTotal = total + 1;
   setTotal(newTotal);
-
 }
 
 const updateBad = () =>{
@@ -28,7 +26,6 @@ const updateBad = () =>{
   setBad(newBad);
   const newTotal = total + 1;
   setTotal(newTotal);
-
 }
 
 const Button = (props)=>{
@@ -48,9 +45,10 @@ const calculateAverage = ()=>{
 
 const StatisticsLine = (props)=>{
   return(
-    <div>
-      {props.name} = {props.value}
-    </div>
+    <tr>
+      <td>{props.name}</td>
+      <td>{props.value}</td>
+    </tr>
   )
 }
 
@@ -63,20 +61,28 @@ const StatisticsLine = (props)=>{
     else{
  return(
     <div>
-      <h1>Statistics</h1>
-      <StatisticsLine name = "Good" value = {good}></StatisticsLine>
-      <StatisticsLine name = "Neutral" value = {neutral}></StatisticsLine>
-      <StatisticsLine name = "Bad" value = {bad}></StatisticsLine>
-      <StatisticsLine name = "Total" value = {total}></StatisticsLine>
-      <StatisticsLine name = "Average" value = {calculateAverage()}></StatisticsLine>
-      <StatisticsLine name = "Positive" value = {calculatePositive() + "%"}></StatisticsLine>
+      <table>
+        <thead>
+          <tr>
+            <td>Statistics</td>
+          </tr>
+        </thead>
+        <tbody>
+          <StatisticsLine name = "Good" value = {good}></StatisticsLine>
+          <StatisticsLine name = "Neutral" value = {neutral}></StatisticsLine>
+          <StatisticsLine name = "Bad" value = {bad}></StatisticsLine>
+          <StatisticsLine name = "Total" value = {total}></StatisticsLine>
+          <StatisticsLine name = "Average" value = {calculateAverage()}></StatisticsLine>
+          <StatisticsLine name = "Positive" value = {calculatePositive() + "%"}></StatisticsLine>
+        </tbody>
+      </table>
     </div>
   );
  }
 }
 
 
-  return (  
+  return (
     <div>
       <div>
         <h1>Give Feedback</h1>
