@@ -14,11 +14,20 @@ const App = () => {
 
   const [selected, setSelected] = useState(0);
   const [voteArray, setVoteArray] = useState([]);
+  const [mostVoted, setMostVoted] = useState(0);
+  let aux = 0;
 
   useEffect(() => {
     newArrayZero();
   }, []);
 
+  useEffect(() => {
+    evaluateMostVoted();
+  }, [voteArray]);
+
+  useEffect(() => {
+
+  }, [mostVoted]);
 
   const newAnecdote = () => {
     const rand = Math.floor(Math.random() * anecdotes.length);
@@ -47,6 +56,15 @@ const App = () => {
     });
   };
   
+  const evaluateMostVoted = ()=>{
+    for (let i =0; i<voteArray.length ; i++){
+      if(voteArray[i] > voteArray[aux]){
+        aux = i;
+      } 
+    }
+    setMostVoted(aux)
+  }
+
 
   return (
     <div>
@@ -54,6 +72,9 @@ const App = () => {
       <div>It has {voteArray[selected]} votes</div>
       <button onClick={newAnecdote}>New Anecdote</button>
       <button onClick={newVote}>vote</button>
+      <button onClick={evaluateMostVoted}>Evaluate</button>
+      <h1>the anecdotes with most votes ({voteArray[mostVoted]}) is</h1>
+      <p>{anecdotes[mostVoted]}</p>
     </div>
   );
 };
