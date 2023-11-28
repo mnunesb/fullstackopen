@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 
 const App = () => {
   const anecdotes = [
@@ -10,27 +10,52 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
-  ]
-   
-  const [selected, setSelected] = useState(0)
+  ];
 
-  const newAnecdote = (props) =>{
-    const rand = (Math.floor(Math.random()* anecdotes.length));
-    setSelected (rand)
-    console.log(selected)
-    console.log(rand)
-    console.log(props)
-    console.log(anecdotes)
-    console.log(anecdotes.length)
+  const [selected, setSelected] = useState(0);
+  const [voteArray, setVoteArray] = useState([]);
 
+  useEffect(() => {
+    newArrayZero();
+  }, []);
+
+
+  const newAnecdote = () => {
+    const rand = Math.floor(Math.random() * anecdotes.length);
+    setSelected(rand);
   }
+
+  const newArrayZero = () => {
+    const newArray = []
+    for (let i = 0; i < anecdotes.length; i++) {
+      newArray.push(0);
+    }
+    setVoteArray(newArray);
+  }
+
+  useEffect(() => {
+ 
+  }, [voteArray]);
+
+
+  const newVote = () => {
+    setVoteArray(prevState => {
+      const auxArray = [...prevState];
+      auxArray[selected] += 1;
+      console.log(auxArray); // Log the updated array
+      return auxArray; // Return the updated array
+    });
+  };
+  
+
   return (
     <div>
       {anecdotes[selected]}
-      <button onClick={newAnecdote} anecdotes = {anecdotes}>New Anecdote</button>
+      <div>It has {voteArray[selected]} votes</div>
+      <button onClick={newAnecdote}>New Anecdote</button>
+      <button onClick={newVote}>vote</button>
     </div>
+  );
+};
 
-  )
-}
-
-export default App
+export default App;
