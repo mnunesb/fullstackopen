@@ -37,48 +37,45 @@ const Button = (props)=>{
   );
 }
 
-const Average = () =>{
-  if(total == 0){
-    return(
-      <div> Average = 0</div>
-    );
-  } else{
-  return(
-    <div>
-      Average = {(good - bad)/total}
-    </div>
-  );
- }
+
+const calculatePositive = ()=>{
+  return ((good/total)*100)
 }
 
-const Positive = ()=>{
-  if(total == 0){
-    return(
-      <div> Positive = 0</div>
-    );
-  } else{
-    return(
-      <div>
-        Positive: {(good/total)*100}%
-      </div>
-  );
+const calculateAverage = ()=>{
+  return ((good - bad)/total)
 }
+
+const StatisticsLine = (props)=>{
+  return(
+    <div>
+      {props.name} = {props.value}
+    </div>
+  )
 }
 
  const Statistics = ()=>{
-  return(
+  if(total == 0){
+    return(
+      <p>No feedback given</p>
+    );
+  }
+    else{
+ return(
     <div>
       <h1>Statistics</h1>
-      <div>Good = {good}</div>
-      <div>Neutral = {neutral}</div>
-      <div>Bad = {bad}</div>
-      <div>Total = {total}</div>
-      <Average></Average>
-      <Positive></Positive>
+      <StatisticsLine name = "Good" value = {good}></StatisticsLine>
+      <StatisticsLine name = "Neutral" value = {neutral}></StatisticsLine>
+      <StatisticsLine name = "Bad" value = {bad}></StatisticsLine>
+      <StatisticsLine name = "Total" value = {total}></StatisticsLine>
+      <StatisticsLine name = "Average" value = {calculateAverage()}></StatisticsLine>
+      <StatisticsLine name = "Positive" value = {calculatePositive() + "%"}></StatisticsLine>
     </div>
-
   );
  }
+}
+
+
   return (  
     <div>
       <div>
