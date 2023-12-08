@@ -20,10 +20,21 @@ const Course = ({course})=> {
         />      
       </>
 
+const Total = ({ part }) => {
+    const totalExercises = part.reduce((accumulator, currentPart) => accumulator + currentPart.exercises, 0);
+  
+    return (
+      <div>
+        Total of {totalExercises} exercises
+      </div>
+    );
+  };
+  
 return (
     <div>
         <Header course={course}/>
         <Content parts={course.parts}/>
+        <Total part={course.parts}/>
     </div>
 )
 }
