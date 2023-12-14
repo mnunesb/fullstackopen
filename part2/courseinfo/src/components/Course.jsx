@@ -1,17 +1,17 @@
 const Course = ({course})=> {
     const Header = ({ course }) => <h1>{course.name}</h1>
     
-    const Part = ({ part }) => 
+    const Part = ({ parts }) => 
       <p>
-        {part.name} {part.exercises}
+        {parts.name} {parts.exercises}
       </p>
     
     const Content = ({ parts }) => 
     <>
-      {parts.map((part, index) => 
+      {parts.map((parts, id) => 
         <Part
-          key={index}
-          part={part} 
+          key={id}
+          parts={parts} 
         />
       )}              
     </>
