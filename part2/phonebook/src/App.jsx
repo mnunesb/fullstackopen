@@ -37,10 +37,13 @@ const App = () => {
   }
 
   const displayName = persons.map((person, index) => <li key={index}>{person.name} {person.number}</li> )
+  
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h1>Phonebook</h1>
+
       <form onSubmit={addName}>
+        <h2>Add new contact</h2>
         <div>
           <label htmlFor="name">Name: </label>
           <input value={newName} onChange={handleNameChange}></input>
