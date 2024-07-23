@@ -4,7 +4,6 @@ const App = () => {
   const [persons, setPersons] = useState([
     {name: 'Arto Hellas', number: 2498771125},
     {name: 'Barto Hellas', number: 12498771125},
-    {name: 'Carto Hellas', number: 2498771125},
     {name: 'Marcello Nunes', number: 2498776125},
     {name: 'Darcy Ribeiro', number: 998771125},
   ]) 
