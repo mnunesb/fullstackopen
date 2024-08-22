@@ -1,6 +1,5 @@
-import axios from 'axios';
 import React from 'react';
-
+import formService from '../services/form'
 
 const Form = ({newName, handleNameChange, newNumber, handleNumberChange, setNewName, setNewNumber,persons, setPersons })=>{
 
@@ -19,9 +18,10 @@ const Form = ({newName, handleNameChange, newNumber, handleNumberChange, setNewN
           const personObject = {
             name: newName,
             number: newNumber,
+            id: persons.length + 1
           };
-          axios
-            .post('http://localhost:3001/persons', {...personObject, id : persons.length+1})
+          formService
+            .create(personObject)
             .then(()=>{
               setPersons(persons.concat(personObject));
               setNewName('');

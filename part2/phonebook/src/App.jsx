@@ -3,6 +3,7 @@ import Search from './components/Search';
 import Form from './components/Form'
 import DisplayInfo from './components/DisplayInfo'
 import axios from 'axios'
+import formService from './services/form'
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -11,8 +12,8 @@ const App = () => {
   const [newSearch, setNewSearch] = useState('');
 
 useEffect(()=>{
-  axios
-    .get('http://localhost:3001/persons')
+  formService
+    .getAll('http://localhost:3001/persons')
     .then(response=>{
       setPersons(response.data)
     })
@@ -30,7 +31,6 @@ useEffect(()=>{
     setNewSearch(event.target.value);
     console.log({ newSearch });
   };
-
 
 
   return (
