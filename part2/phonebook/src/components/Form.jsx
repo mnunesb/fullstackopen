@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 
 
@@ -19,12 +20,16 @@ const Form = ({newName, handleNameChange, newNumber, handleNumberChange, setNewN
             name: newName,
             number: newNumber,
           };
-          setPersons(persons.concat(personObject));
-          setNewName('');
-          setNewNumber('');
-        }
-      };
-
+          axios
+            .post('http://localhost:3001/persons', {...personObject, id : persons.length+1})
+            .then(()=>{
+              setPersons(persons.concat(personObject));
+              setNewName('');
+              setNewNumber('');
+            }
+            )
+            }
+        };
 
     return(
         <form onSubmit={addName}>
