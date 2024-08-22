@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Search from './components/Search';
 import Form from './components/Form'
 import DisplayInfo from './components/DisplayInfo'
-import axios from 'axios'
 import formService from './services/form'
 
 const App = () => {
@@ -29,7 +28,6 @@ useEffect(()=>{
 
   const handleSearch = (event) => {
     setNewSearch(event.target.value);
-    console.log({ newSearch });
   };
 
 
@@ -50,7 +48,11 @@ useEffect(()=>{
         setPersons={setPersons}
       />
       <h2>Numbers</h2>
-      <DisplayInfo persons={persons} newSearch={newSearch}/>
+      <DisplayInfo 
+        persons={persons}
+        newSearch={newSearch}
+        setPersons= {setPersons}
+      />
     </div>
   );
 };
