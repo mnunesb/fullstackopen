@@ -13,7 +13,6 @@ const handleDelete = (id) => {
       .deletePerson(id)
       .then(() => {
         setPersons(persons.filter(person => person.id !== id));
-        console.log("delete called");
       })
       .catch(error => {
         console.error("Error deleting contact:", error);

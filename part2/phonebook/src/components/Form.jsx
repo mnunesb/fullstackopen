@@ -18,7 +18,7 @@ const Form = ({newName, handleNameChange, newNumber, handleNumberChange, setNewN
           const personObject = {
             name: newName,
             number: newNumber,
-            id: persons.length + 1
+            id: String(persons.length +1)
           };
           formService
             .create(personObject)
